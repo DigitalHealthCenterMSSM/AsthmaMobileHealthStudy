@@ -49,7 +49,7 @@ my.convert.day <- function(date.v, mon.index = mon0, year.c = year0) {
 }
 
 ##### Calculate whether user meets GINA standards
-`**`GINA.cal`**` = function(user.set) {
+GINA.cal = function(user.set) {
     GINA.matrix = matrix(NA, nrow = length(user.set), ncol = 4)
     colnames(GINA.matrix) = c("DaySym", "NighSym", "Reliever", "Activity")
     
@@ -141,6 +141,7 @@ temp = You.data[, "smoking_status"] == "[1]"
 temp1 = pack.year < 10
 user.nonsmoke = as.character(You.data[temp | temp1, "healthCode"])
 user.set0 <- as.character(intersect(user.nonsmoke, user.nocompete))
+
 temp <- list(Dai.users = Dai.data[, "healthCode"], week.users = week.data[, "healthCode"])
 user.five <- as.character(names(table(unlist(temp)))[table(unlist(temp)) >= 5])
 for_venn <- list(user.nonsmoke = user.nonsmoke, user.nocompetingrisk = user.nocompete, user.five = user.five)
@@ -152,8 +153,10 @@ lapply(cohorts, length)
 ###################################################### FIGURE 1
 map("state", interior = FALSE)
 map("state", boundary = FALSE, col = "gray", add = TRUE)
-# align data with map definitions by (partial) matching state,county names, which include
-# multiple polygons for some counties
+
+#align data with map definitions by (partial) matching state,county names, which include
+#multiple polygons for some counties
+
 my.state.name = state.name
 for (i in 1:length(state.name)) {
     name = state.name[i]
@@ -168,7 +171,8 @@ temp[20:22] = "MA"
 temp[23:24] = "MI"
 temp[8] = "DC"
 mapstate <- temp
-### we provide pre-processed file to protect exact user locations
+
+##### pre-processed file for the protection of exact user locations
 bl.loc <- read.table("bl_loc.txt", header = TRUE, sep = "\t")
 all.state = bl.loc$state
 user.temp <- cohorts$baseline[!is.na(all.state)]
@@ -181,10 +185,12 @@ colors = c("#F1EEF6", "#D4B9DA", "#C994C7", "#DF65B0", "#DD1C77", "#980043")
 my.plot$colorBuckets <- as.numeric(cut(my.plot$percent, c(0, 10, 20, 50, 100, 300, 1000)))
 leg.txt <- c("1-10", "10-19", "20-49", "50-99", "100-300", ">300")
 colorsmatched <- my.plot$colorBuckets
-# draw map
+
+#### draw map
 map("state", col = colors[colorsmatched], fill = TRUE, resolution = 0, lty = 0, projection = "polyconic")
 title("All Users")
 legend("topright", leg.txt, horiz = TRUE, fill = colors, cex = 0.6)
+
 ###################################################### FIGURE 1A
 get_scatterplot2 <- function(x, y, my.xlab = "", my.ylab = "") {
     int <- intersect(names(x[!is.na(x)]), names(y[!is.na(y)]))
@@ -212,6 +218,7 @@ cdc.perc.prev = as.numeric(cdc.prev$cdc.prev)
 names(cdc.perc.prev) = cdc.prev$state
 get_scatterplot2(app.state.prev * 100, cdc.perc.prev * 100, my.xlab = "Log10 Percentage Prevalence (AHA)", 
     my.ylab = "Log10 Percentage Prevalence (CDC)")
+    
 ###################################################### TABLE 1
 get_column <- function(user) {
     temp1 <- mile.data[mile.data$healthCode %in% user, c("gender", "age", "healthCode")]  #[1] is male [2] is female
@@ -221,19 +228,7 @@ get_column <- function(user) {
     names(temp2) <- c("gender", "age", "healthCode")
     temp2$gender = as.character(temp2$gender)
     healthCode = unique(c(as.character(temp1$healthCode), as.character(temp2$healthCode)))
-    get_y <- function(x, var) {
-        y <- temp2[temp2$healthCode %in% x, var]
-        if (length(y) == 0) {
-            z = temp1[temp1$healthCode %in% x, var]
-        } else {
-            if (is.na(y)) {
-                z = ifelse(length(temp1[temp1$healthCode %in% x, var]) > 0, temp1[temp1$healthCode %in% 
-                  x, var], y)
-            } else {
-                z = y
-            }
-        }
-    }
+##### demographic data-------------------------------------------------
     age <- unlist(lapply(healthCode, get_y, "age"))
     gender <- unlist(lapply(healthCode, get_y, "gender"))
     age.class <- cut(age, c(min(age, na.rm = TRUE), 34, 64, max(age, na.rm = TRUE)), labels = c("18-34", 
@@ -250,6 +245,7 @@ get_column <- function(user) {
     black <- You.data$race == "[1]" & nonhispanic  #217
     noanswer <- You.data$race == "[7]" & nonhispanic  #42
     other <- !multi & nonhispanic & !white & !black & !noanswer  #367, including no answer
+    
     new.race <- rep(NA, nrow(You.data))
     new.race[other] <- "other"
     new.race[multi] <- "multi"
@@ -273,6 +269,7 @@ get_column <- function(user) {
     income = income[!names(income) %in% "[7]"]
     names(income) <- c("<$14,999", "$15,000-21,999", "$22,000-43,999", "$44,000-60,000", 
         ">$60,000", "I don't know")
+##### clinical data------------------------------------------------
     clinical.data <- His.data[His.data$healthCode %in% user, c("healthCode", "times_hospitalized", 
         "nights", "emergency", "emergency_times", "intubated", "symptoms", "nights", "limited activity", 
         "seen_doc", "doc_times", "oral steroids", "age_when_diagnosed", "miss_work", "hospitalized_times")]
@@ -281,8 +278,10 @@ get_column <- function(user) {
     table(factor(demo.data$health_insurance, levels = levels(factor(You.data$health_insurance))))
     diag.class <- table(cut(clinical.data$age_when_diagnosed, c(0, 18, 24, 34, 44, 54, 64, 
         max(clinical.data$age_when_diagnosed, na.rm = TRUE))))
+        
     diag.class <- c(`(0-18]` = as.numeric(diag.class["(0,18]"]), `19+` = sum(diag.class[!names(diag.class) %in% 
         ">18"]))
+        
     medi.data <- data.frame(Med.data[Med.data$healthCode %in% user, c("prescribed_asthma_control_medication", 
         "daily_inhaled_medicine")])
     acpresc <- table(factor(medi.data$prescribed_asthma_control_medication))
@@ -290,9 +289,9 @@ get_column <- function(user) {
     dailymed <- table(factor(medi.data$daily_inhaled_medicine))
     dailymed <- c(`ICS/LABA` = sum(dailymed[c("[1]", "[3]", "[4]", "[7]")]), ICS = sum(dailymed[c("[2]", 
         "[5]", "[6]", "[8]", "[9]", "[10]")]))
-    ############# 
+
     gina = table(factor(GINA.cal(user), levels = c("Uncontrolled", "Partly Controlled", "Well Controlled")))
-    ######### 
+
     count <- list(age = age, gender = gender, race = race, education = education, income = income, 
         emerg = emerg, hosp = hosp, diag.class = diag.class, acpresc = acpresc, dailymed = dailymed, 
         gina = gina)
@@ -301,6 +300,8 @@ get_column <- function(user) {
     names(out) <- names(unlist(count))
     out
 }
+###### end get_column()--------------------------------------------------------------------------------
+
 get_column2 <- function(user) {
     demo.data <- data.frame(You.data[You.data$healthCode %in% user, c("health_insurance", 
         "healthCode")])
@@ -309,6 +310,7 @@ get_column2 <- function(user) {
     clinical.data <- His.data[His.data$healthCode %in% user, c("healthCode", "times_hospitalized", 
         "nights", "emergency", "emergency_times", "intubated", "symptoms", "nights", "limited activity", 
         "seen_doc", "doc_times", "oral steroids", "age_when_diagnosed", "miss_work", "hospitalized_times")]
+        
     intub <- table(factor(clinical.data$intubated))
     names(intub) <- c("Yes", "No", "Not sure")
     miss_work <- table(factor(clinical.data$miss_work))
@@ -328,6 +330,7 @@ get_column2 <- function(user) {
         na.rm = t)), include.lowest = T, right = FALSE))
     steroid <- table(factor(clinical.data[, "oral steroids"]))
     names(steroid) <- c("None", "One", "Two", "Three or more")
+    
     count <- list(insur = insur, intub = intub, miss_work = miss_work, symp = symp, night = night, 
         activity = activity, hosptimes = hosptimes, emergtimes = emergtimes, seen_doc = seen_doc, 
         doctimes = doctimes, steroid = steroid)
@@ -336,21 +339,25 @@ get_column2 <- function(user) {
     names(out) <- names(unlist(count))
     out
 }
+##### end get_column2()--------------------------------------------------------------------------------
+
 out <- list(Baseline = get_column(cohorts$baseline), Robust = get_column(cohorts$robust), 
     Milestone = get_column(cohorts$milestone))
 out <- do.call(cbind, out)
 xtable(out)
+
 ###################################################### SUPPLEMENTARY TABLE 2
 out2 <- list(Baseline = get_column2(cohorts$baseline), Robust = get_column2(cohorts$robust), 
     Milestone = get_column2(cohorts$milestone))
 out2 <- do.call(cbind, out2)
 xtable(out2)
-###################################################### 
+###################################################### get enrollment date for each user
 user.temp <- cohorts$baseline
 enrol.date <- character()
 get_date = function(x) {
     substring(as.character(x), 1, 10)
 }
+
 for (i in 1:length(user.temp)) {
     edate <- unique(c(get_date(His.data[His.data$healthCode == user.temp[i], ]$createdOn), 
         get_date(MedH.data[MedH.data$healthCode == user.temp[i], ]$createdOn), get_date(Med.data[Med.data$healthCode == 
@@ -365,6 +372,7 @@ for (i in 1:length(user.temp)) {
     enrol.date[i] = as.character(edate)
     print(i)
 }
+
 edate.data <- data.frame(healthCode = cohorts$baseline, edate = as.Date(enrol.date, format = "%Y-%m-%d"))
 mymonth.cut <- as.Date(c("2015-03-09", "2015-04-08", "2015-05-09", "2015-06-09", "2015-07-10", 
     "2015-08-10", "2015-09-10"), format = "%Y-%m-%d")
@@ -375,11 +383,13 @@ for (i in 1:6) {
     robust.enrol[[i]] <- as.character(na.omit(temp[temp$edate >= mymonth.cut[i] & temp$edate < 
         mymonth.cut[i + 1], ]$healthCode))
 }
+
 robust.GINA = list(NULL)
 for (i in 1:6) {
     robust.GINA[[i]] = factor(GINA.cal(robust.enrol[[i]]), levels = c("Uncontrolled", "Partly Controlled", 
         "Well Controlled"))
 }
+
 robust.GINA.sum = matrix(NA, nrow = 6, ncol = 8)
 for (i in 1:6) {
     robust.GINA.sum[i, 1] = length(robust.GINA[[i]])
@@ -388,9 +398,11 @@ for (i in 1:6) {
     robust.GINA.sum[i, c(3, 5, 7)] = temp
     robust.GINA.sum[i, c(4, 6, 8)] = round(temp/sum(temp), 2)
 }
+
 myfunc <- function(v1) {
     deparse(substitute(v1))
 }
+
 get_demo.plot <- function(x, mydata) {
     xname <- myfunc(x)
     temp <- data.frame(mydata, x)
@@ -398,6 +410,7 @@ get_demo.plot <- function(x, mydata) {
     for (i in 1:6) {
         robust.temp[[i]] = factor(temp[temp$healthCode %in% robust.enrol[[i]], xname], levels = levels(x))
     }
+    
     n <- length(levels(x)) * 2 + 2
     robust.temp.sum = matrix(NA, nrow = 6, ncol = n)
     for (i in 1:6) {
@@ -407,6 +420,7 @@ get_demo.plot <- function(x, mydata) {
         robust.temp.sum[i, (3:n)[3:n%%2 == 1]] = temp
         robust.temp.sum[i, (3:n)[3:n%%2 == 0]] = round(temp/sum(temp), 2)
     }
+    
     c1 <- apply(robust.temp.sum[1:3, (3:n)[3:n%%2 == 1]], 2, sum)
     c2 <- apply(robust.temp.sum[4:6, (3:n)[3:n%%2 == 1]], 2, sum)
     first <- c1/sum(c1)
@@ -421,6 +435,7 @@ get_demo.plot <- function(x, mydata) {
     names(melted)[2] <- "Period"
     list(melted, rbind(c1, c2))
 }
+
 user = cohorts$robust
 temp1 <- mile.data[mile.data$healthCode %in% user, c("gender", "age", "healthCode")]  #[1] is male [2] is female
 temp1$gender = as.character(ifelse(temp1$gender == "[1]", "Male", "Female"))
@@ -433,6 +448,7 @@ gender <- factor(unlist(lapply(healthCode, get_y, "gender")))
 mydata <- data.frame(healthCode, gender)
 mydata <- mydata[mydata$healthCode %in% cohorts$baseline, ]
 gender <- factor(mydata[mydata$healthCode %in% cohorts$baseline, ]$gender)
+
 ###################################################### FIGURE 2A
 out <- get_demo.plot(gender, mydata)
 ggplot(out[[1]], aes(x = Period, y = temp.Dist, fill = name)) + geom_bar(stat = "identity", 
@@ -444,6 +460,7 @@ out <- get_demo.plot(gina, mydata)
 ggplot(out[[1]], aes(x = Period, y = temp.Dist, fill = name)) + geom_bar(stat = "identity", 
     position = "stack")
 chisq.test(out[[2]])
+
 ###################################################### FIGURE 2B
 clinical.data <- His.data[, c("healthCode", "times_hospitalized", "emergency", "intubated", 
     "symptoms", "nights", "limited activity")]
@@ -452,12 +469,14 @@ out <- get_demo.plot(activity, clinical.data)
 ggplot(out[[1]], aes(x = Period, y = temp.Dist, fill = name)) + geom_bar(stat = "identity", 
     position = "stack")
 chisq.test(out[[2]], simulate.p.value = T)
+
 ###################################################### FIGURE 2C
 symptoms <- factor(clinical.data$symptoms)
 out <- get_demo.plot(symptoms, clinical.data)
 ggplot(out[[1]], aes(x = Period, y = temp.Dist, fill = name)) + geom_bar(stat = "identity", 
     position = "stack")
 chisq.test(out[[2]], simulate.p.value = T)
+
 ###################################################### FIGURE 2D,E See: userretentionfigures_manuscript-jan2017.html SUPPLEMENTARY TABLE 3B
 rob.date = edate.data[match(cohorts$robust, edate.data$healthCode), ]$edate
 seq.day = seq(from = as.Date(range(rob.date)[1]), to = as.Date(range(rob.date)[2]), by = "day")
@@ -467,11 +486,13 @@ cf1 = rob.gina
 y = ifelse(cf1 == "Uncontrolled", 1, 0)
 x = rob.ind
 fit = glm(factor(y) ~ x, family = binomial())
+
 summary(fit)
 confint(fit, parm = "x")
 exp(coef(fit)["x"])
 exp(confint(fit, parm = "x"))
 cdplot(factor(y) ~ x, ylab = "Well Controlled", xlab = "Enrollment Date")
+
 rob.date = edate.data[match(cohorts$robust, edate.data$healthCode), ]$edate
 seq.day = seq(from = as.Date(range(rob.date)[1]), to = as.Date(range(rob.date)[2]), by = "day")
 rob.ind = match(rob.date, seq.day)
@@ -480,11 +501,13 @@ cf2 = gender[match(cohorts$robust, healthCode)]
 x = rob.ind[!is.na(cf2)]
 y = ifelse(cf2[!is.na(cf2)] == "Female", 1, 0)
 fit = glm(factor(y) ~ x, family = binomial())
+
 summary(fit)
 confint(fit, parm = "x")
 exp(coef(fit)["x"])
 exp(confint(fit, parm = "x"))
 cdplot(factor(y) ~ x, ylab = "Gender", xlab = "Enrollment Date")
+
 ### use negative version opposite coding
 cf3 = clinical.data[match(cohorts$robust, clinical.data$healthCode), "limited activity"]
 cf3 = as.numeric(factor(cf3))
@@ -495,7 +518,7 @@ summary(fit)
 length(y)
 coef(fit)["x"]
 confint(fit, parm = "x")
-####### 
+
 cf4 = clinical.data[match(cohorts$robust, clinical.data$healthCode), "symptoms"]
 cf4 = as.numeric(factor(cf4))
 y = cf4[!is.na(cf4)]
@@ -505,6 +528,7 @@ length(y)
 summary(fit)
 coef(fit)["x"]
 confint(fit, parm = "x")
+
 ###################################################### FIGURE 3A
 temp = Dai.data[Dai.data$healthCode %in% cohorts$robust, ]
 day <- unlist(tapply(factor(temp$day_symptoms, levels = c("True", "False")), factor(temp$healthCode), 
@@ -513,6 +537,7 @@ sum(tapply(day, factor(GINA.cal(names(day))), length))
 kruskal.test(day, factor(GINA.cal(names(day))))
 boxplot(as.numeric(day) ~ factor(GINA.cal(names(day)), levels = c("Uncontrolled", "Partly Controlled", 
     "Well Controlled")))
+    
 ###################################################### FIGURE 3B
 night <- unlist(tapply(factor(temp$night_symptoms, levels = c("True", "False")), factor(temp$healthCode), 
     function(x) table(x)[[1]]/sum(table(x))))
@@ -520,6 +545,7 @@ sum(tapply(night, factor(GINA.cal(names(night))), length))
 kruskal.test(night, factor(GINA.cal(names(night))))
 boxplot(as.numeric(night) ~ factor(GINA.cal(names(night)), levels = c("Uncontrolled", "Partly Controlled", 
     "Well Controlled")))
+    
 ###################################################### FIGURE 3C
 qr.use <- unlist(tapply(factor(temp$use_qr, levels = c("True", "False")), factor(temp$healthCode), 
     function(x) table(x)[[1]]/sum(table(x))))
@@ -528,6 +554,7 @@ sum(tapply(qr.use, factor(GINA.cal(names(qr.use))), length))
 kruskal.test(qr.use, factor(GINA.cal(names(qr.use))))
 boxplot(as.numeric(qr.use) ~ factor(GINA.cal(names(qr.use)), levels = c("Uncontrolled", "Partly Controlled", 
     "Well Controlled")))
+    
 ###################################################### FIGURE 3D
 medi <- read.table("Daily_medicine_ans_by_date_last_response.tsv", sep = "\t", header = T)
 medi <- medi[medi$healthCode %in% cohorts$robust, ]
@@ -539,6 +566,7 @@ sum(tapply(comp2, factor(GINA.cal(names(comp2))), length))
 kruskal.test(comp2, factor(GINA.cal(names(comp2))))
 boxplot(as.numeric(comp2) ~ factor(GINA.cal(names(comp2)), levels = c("Uncontrolled", "Partly Controlled", 
     "Well Controlled")))
+    
 ###################################################### FIGURE 3E
 dai.peakflow = unlist(tapply(Dai.data$peakflow, Dai.data$healthCode, mean, na.rm = T))
 # cond=unlist(tapply(Dai.data$peakflow,Dai.data$healthCode,length))>2
@@ -549,10 +577,6 @@ nicole = data.frame(healthCode = cohorts$robust, GINA = GINA.cal(cohorts$robust)
     agesex1$healthCode), ]$NonIdentifiableDemographics.json.patientCurrentAge, peakflow = unlist(dai.peakflow[match(cohorts$robust, 
     names(dai.peakflow))]))
 table(is.na(nicole$peakflow))
-# # load('from_marcus_091316/robust_users_data.Rdata') pfs_gina <-
-# robust_users_daily_summary; rm(robust_users_daily_summary) pfs_gina <- pfs_gina[,
-# !names(pfs_gina) %in% 'GINA'] colnames(pfs_gina)[2] <- 'GINA'
-# marcus=pfs_gina[,match(names(nicole),names(pfs_gina))]
 pfs_gina = nicole
 # Clean bad data out
 pfs_gina$HeightInches[ifelse(is.na(pfs_gina$HeightInches < 50), FALSE, pfs_gina$HeightInches < 
