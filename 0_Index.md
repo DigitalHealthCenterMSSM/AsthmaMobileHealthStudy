@@ -7,7 +7,7 @@
 4. [Figure 2A](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure2A.md)
 5. [Figure 2B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure2B.md)
 6. [Figure 2C](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure2C.md)
-7. [Figure 2D,E and Supplementary Table 3](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure2DESuppTable3.md)
+7. 
 8. [Figure 3A](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure3A.md)
 9. [Figure 3B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure3B.md)
 10. [Figure 3C](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure3C.md)
@@ -19,5 +19,6 @@
 16. [Supplementary Figure 4](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/SuppFigure4.md)
 17. [Supplementary Table 2](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/SuppTable2.md)
 18. [Supplementary Table 3A](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/SuppTable3A.md)
+[Supplementary Table 3B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/SuppTable3.md)
 19. [Supplementary Table 5D,E](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/SuppTable5D%2CE.md)
 20. [Complete Main R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/_unabridgedCode.md)
