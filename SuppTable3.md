@@ -1,4 +1,4 @@
-## Figures 2 D,E + Supplementary Table 3
+## Supplementary Table 3
 ```markdown
 rob.date = edate.data[match(cohorts$robust, edate.data$healthCode), ]$edate
 seq.day = seq(from = as.Date(range(rob.date)[1]), to = as.Date(range(rob.date)[2]), by = "day")
