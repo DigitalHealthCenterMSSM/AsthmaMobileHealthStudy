@@ -2,8 +2,7 @@
 ```markdown
 map("state", interior = FALSE)
 map("state", boundary = FALSE, col = "gray", add = TRUE)
-# align data with map definitions by (partial) matching state,county names, which include
-# multiple polygons for some counties
+# align data with map definitions by (partial) matching state,county names, which include multiple polygons for some counties
 my.state.name = state.name
 for (i in 1:length(state.name)) {
     name = state.name[i]
