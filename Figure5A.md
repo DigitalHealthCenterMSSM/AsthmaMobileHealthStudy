@@ -1,4 +1,4 @@
-## Figure 4, 5A
+## Figure 5A
 ```markdown
 WE.day.index = unlist(lapply(week.data[, "date"], my.convert.day))
 user.set <- cohorts$robust
