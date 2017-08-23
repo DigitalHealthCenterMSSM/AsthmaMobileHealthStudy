@@ -49,7 +49,7 @@ my.convert.day <- function(date.v, mon.index = mon0, year.c = year0) {
 }
 
 ##### Calculate whether user meets GINA standards
-**GINA.cal** = function(user.set) {
+<pre> <b> GINA.cal </b> </pre> = function(user.set) {
     GINA.matrix = matrix(NA, nrow = length(user.set), ncol = 4)
     colnames(GINA.matrix) = c("DaySym", "NighSym", "Reliever", "Activity")
     
