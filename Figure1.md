@@ -1,4 +1,4 @@
-##Figure 1
+## Figure 1
 ```markdown
 map("state", interior = FALSE)
 map("state", boundary = FALSE, col = "gray", add = TRUE)
