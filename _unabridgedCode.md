@@ -578,6 +578,7 @@ nicole = data.frame(healthCode = cohorts$robust, GINA = GINA.cal(cohorts$robust)
     names(dai.peakflow))]))
 table(is.na(nicole$peakflow))
 pfs_gina = nicole
+
 # Clean bad data out
 pfs_gina$HeightInches[ifelse(is.na(pfs_gina$HeightInches < 50), FALSE, pfs_gina$HeightInches < 
     50)] <- NA
@@ -594,6 +595,7 @@ pfs_gina[complete.cases(pfs_gina[, c("GINA", "peakflow", "WeightPounds", "Biolog
 write.table(pfs_gina[complete.cases(pfs_gina[, c("GINA", "peakflow", "WeightPounds", "BiologicalSex", 
     "HeightInches", "CurrentAge")]), "healthCode"], file = "healthCodes4PEFregression.tsv", 
     quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
+    
 ## ! constrain to only uncontrolled and partially controlled
 pfs_gina <- pfs_gina[pfs_gina$GINA != "Well Controlled", ]
 fit <- lm(peakflow ~ GINA + WeightPounds + BiologicalSex + HeightInches + CurrentAge, data = pfs_gina)
@@ -601,6 +603,7 @@ summary(fit)
 fit <- lm(peakflow ~ GINA + BiologicalSex + HeightInches, data = pfs_gina)
 summary(fit)
 table(apply(pfs_gina[, c(2, 3, 4, 7)], 1, function(x) sum(is.na(x)) == 0))
+
 ## Generate smoothed curve for Peak Flow versus Height w/in stratified groups
 range.height = range(pfs_gina$HeightInches, na.rm = T)
 sim = data.frame(matrix(ncol = 4, nrow = (range.height[2] - range.height[1] + 1) * 2 * 2 * 
