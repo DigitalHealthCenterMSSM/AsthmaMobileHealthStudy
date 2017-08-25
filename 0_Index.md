@@ -1,6 +1,6 @@
 # Asthma Mobile Study
 ## Index
-
+```markdown
 1. [Table 1](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Table1.md)
 2. [Figure 1](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure1.md)
 3. [Figure 1A](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure1A.md)
@@ -42,3 +42,4 @@
 
 33. [Complete Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/_TriggerAnalysis.R.md)
 [Preparation Code for Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/PrepTrigAnaR.md)
+```
