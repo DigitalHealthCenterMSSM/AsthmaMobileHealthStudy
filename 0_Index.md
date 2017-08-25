@@ -37,8 +37,8 @@
 31. [Supplementary Table 5D,E](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/SuppTable5D%2CE.md)
 ----------------------------------------------
 32. [Complete NBT Main R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/_unabridgedCode.md)
-[Preparation Code for NBT Main R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/PrepMainR.md)
+- [Preparation Code for NBT Main R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/PrepMainR.md)
 ----------------------------------------------
 33. [Complete Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/_TriggerAnalysis.R.md)
-[Preparation Code for Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/PrepTrigAnaR.md)
+- [Preparation Code for Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/PrepTrigAnaR.md)
 
