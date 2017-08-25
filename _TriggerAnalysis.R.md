@@ -1,5 +1,6 @@
 # Asthma Mobile Health Study
 ## Unabridged Trigger Analysis R Code
+```markdown
 ####### LOAD LIBRARIES
 library(cluster)
 library(colorspace)
@@ -727,3 +728,4 @@ trig.colors = sample(rainbow(length(bl.north)), length(bl.north))
 names(trig.colors) = names(bl.north)
 get_stacks(out[[1]], bl.north, "north")
 get_stacks(out[[2]], bl.south, "south")
+```
