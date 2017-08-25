@@ -8,8 +8,9 @@ cov_df_numeric.columns = [i.replace('_', ' ').replace('CurrentAge', 'current age
 cov_df_numeric.index = [i.replace('_', ' ').replace('CurrentAge', 'current age').replace('BiologicalSex', 'biological sex').lower() for i in cov_df_numeric.columns]
 
 cov_df_numeric_heatmap = seaborn.heatmap(cov_df_numeric, annot=True)
+```
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------
+```markdown
 #Pearson's p-value
 from scipy import stats
 cov_df = cox_df[['study_entry_month', 'CurrentAge', 'age_when_diagnosed', 'Income', 'gina', 'health_insurance','education', 'ethnicity', 'BiologicalSex']]
@@ -23,8 +24,9 @@ cor_pval = pd.DataFrame(cor_pval, columns=cov_df.columns, index=cov_df.columns)
 cor_pval.columns = [i.replace('_', ' ').replace('CurrentAge', 'current age').replace('BiologicalSex', 'biological sex').lower() for i in cor_pval.columns]
 cor_pval.index = [i.replace('_', ' ').replace('CurrentAge', 'current age').replace('BiologicalSex', 'biological sex').lower() for i in cor_pval.columns]
 seaborn.heatmap(cor_pval, annot=True, cmap='Blues')
+```
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------
+```markdown
 #Merged Figure
 
 def triangle_merge(df_triu, df_tril):
