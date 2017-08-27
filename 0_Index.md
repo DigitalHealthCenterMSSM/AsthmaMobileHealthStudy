@@ -1,7 +1,7 @@
 # Asthma Mobile Study
 
 ## Index
-#### [README](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/00README.md)
+### [README](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/README.md)
 1. [Table 1](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Table1.md)
 2. [Figure 1](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure1.md)
 3. [Figure 1A](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/Figure1A.md)
