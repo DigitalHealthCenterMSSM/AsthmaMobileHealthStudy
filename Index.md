@@ -44,4 +44,9 @@
 ----------------------------------------------
 34. [Complete Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/TriggerAnalysisRCode/_FullTriggerAnalysis.R.md)
 - [Preparation Code for Trigger Analysis R Code](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/TriggerAnalysisRCode/0PrepTrigAnaR.md)
+----------------------------------------------
+35. [User Retention Figures Manuscript](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/userretentionfigures_manuscript-jan2017.html.pdf)
+----------------------------------------------
+36. [AMHA Data Preprocessing Manuscript](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/amha_data_preprocessing_manuscript_Jan2017.html.pdf)
+
 
