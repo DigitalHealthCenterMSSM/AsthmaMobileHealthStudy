@@ -1,4 +1,4 @@
-## Supplementary Tables 5D,E
+## Supplementary Tables 5D, E
 [1], [2], [3] Yes, no, don't know
 ```markdown
 a = table(factor(GINA.cal(cohorts$milestone), levels = c("Well Controlled", "Partly Controlled", 
