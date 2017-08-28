@@ -12,7 +12,7 @@ Nature Biotechnology, 2017 35, 354–362 (2017)
 - This Github page were setup and maintained by Peter Jin.  
 ----------------------------------------------
 ## Index
-### [README](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/README.md)
+
 1. [Table 1](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/NBT_MainRCode/Table1.md)
 ---------------------------------------------
 2. [Figure 1](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/NBT_MainRCode/Figure1.md)
