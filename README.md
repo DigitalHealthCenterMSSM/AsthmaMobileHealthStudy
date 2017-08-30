@@ -35,7 +35,7 @@ Nature Biotechnology, 2017 35, 354–362 (2017)
 18. [Figure 5B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/NBT_MainRCode/Figure5B.md)
 19. [Figure 5C](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/NBT_MainRCode/Figure5C.md)
 ----------------------------------------------
-20. [Supplementary Figure 1B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/TriggerAnalysisRCode/SuppFigure1B.md)
+20. [Supplementary Figure 1B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/TriggerAnalysisRCode/SuppFigure1B.md)
 21. [Supplementary Figure 2A](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/userretentionfigures_manuscript-jan2017.html/SuppFigure2A.md)
 22. [Supplementary Figure 2B](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/userretentionfigures_manuscript-jan2017.html/SuppFigure2B.md)
 23. [Supplementary Figure 3](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/userretentionfigures_manuscript-jan2017.html/SuppFigure3.md)
