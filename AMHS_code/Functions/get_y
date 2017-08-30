@@ -1,0 +1,16 @@
+### get_y
+```markdown
+get_y <- function(x, var) {
+    y <- temp2[temp2$healthCode %in% x, var]
+    if (length(y) == 0) {
+        z = temp1[temp1$healthCode %in% x, var]
+    } else {
+        if (is.na(y)) {
+            z = ifelse(length(temp1[temp1$healthCode %in% x, var]) > 0, temp1[temp1$healthCode %in% 
+                x, var], y)
+        } else {
+            z = y
+        }
+    }
+}
+```
