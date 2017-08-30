@@ -8,19 +8,7 @@ get_column <- function(user) {
     names(temp2) <- c("gender", "age", "healthCode")
     temp2$gender = as.character(temp2$gender)
     healthCode = unique(c(as.character(temp1$healthCode), as.character(temp2$healthCode)))
-    get_y <- function(x, var) {
-        y <- temp2[temp2$healthCode %in% x, var]
-        if (length(y) == 0) {
-            z = temp1[temp1$healthCode %in% x, var]
-        } else {
-            if (is.na(y)) {
-                z = ifelse(length(temp1[temp1$healthCode %in% x, var]) > 0, temp1[temp1$healthCode %in% 
-                  x, var], y)
-            } else {
-                z = y
-            }
-        }
-    }
+    
     age <- unlist(lapply(healthCode, get_y, "age"))
     gender <- unlist(lapply(healthCode, get_y, "gender"))
     age.class <- cut(age, c(min(age, na.rm = TRUE), 34, 64, max(age, na.rm = TRUE)), labels = c("18-34", 
