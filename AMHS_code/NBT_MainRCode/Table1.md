@@ -1,4 +1,5 @@
 ## Table 1
+[get_y](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/Functions/get_y)
 ```markdown
 get_column <- function(user) {
     temp1 <- mile.data[mile.data$healthCode %in% user, c("gender", "age", "healthCode")]  #[1] is male [2] is female
