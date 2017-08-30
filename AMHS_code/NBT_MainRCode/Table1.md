@@ -9,8 +9,8 @@ get_column <- function(user) {
     temp2$gender = as.character(temp2$gender)
     healthCode = unique(c(as.character(temp1$healthCode), as.character(temp2$healthCode)))
     
-    age <- unlist(lapply(healthCode, get_y, "age"))
-    gender <- unlist(lapply(healthCode, get_y, "gender"))
+    age <- unlist(lapply(healthCode, [get_y](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/Functions/get_y), "age"))
+    gender <- unlist(lapply(healthCode, [get_y](https://github.com/DigitalHealthCenterMSSM/AsthmaMobileHealthStudy/blob/master/AMHS_code/Functions/get_y), "gender"))
     age.class <- cut(age, c(min(age, na.rm = TRUE), 34, 64, max(age, na.rm = TRUE)), labels = c("18-34", 
         "35-64", "65+"))
     age <- table(age.class)
