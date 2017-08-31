@@ -12,12 +12,14 @@ get_scatterplot2 <- function(x, y, my.xlab = "", my.ylab = "") {
     corr <- cor(log10(yplot), log10(xplot))
     out <- cor.test(log10(yplot), log10(xplot))
     mylabel = bquote(rho == .(format(corr, digits = 2)))
+    
     textplot(log10(forplot$xplot), log10(forplot$yplot), row.names(forplot), xlab = my.xlab, 
         ylab = my.ylab, show.lines = FALSE, cex = 0.7)
     abline(fit, lty = 2)
     legend("bottomright", legend = as.expression(mylabel), bty = "n")
     out
 }
+
 mytable <- table(all.state)
 sum(mytable)
 mytable <- mytable[mytable > 5]
