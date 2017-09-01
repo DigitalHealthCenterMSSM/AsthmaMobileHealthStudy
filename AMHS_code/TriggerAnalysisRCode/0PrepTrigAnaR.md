@@ -119,7 +119,7 @@ get_station <- function(x) {
     list(station = station, distance = distance)
 }
 get_rad <- function(x, y) {
-    as.numeric(rdist.earth(t(matrix(c(x[1], y[2]))), t(matrix(c(x[1], y[1])))))
+    as.numeric(rdist.earth(t(matrix(c(x[2], y[2]))), t(matrix(c(x[1], y[1])))))
 }
 clean_x <- function(x) {
     ifelse(is.null(x), NA, x)
