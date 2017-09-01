@@ -1,6 +1,7 @@
 ## Figure 3E
 ```markdown
 dai.peakflow = unlist(tapply(Dai.data$peakflow, Dai.data$healthCode, mean, na.rm = T))
+
 # cond=unlist(tapply(Dai.data$peakflow,Dai.data$healthCode,length))>2
 nicole = data.frame(healthCode = cohorts$robust, GINA = GINA.cal(cohorts$robust), BiologicalSex = agesex1[match(cohorts$robust, 
     agesex1$healthCode), ]$NonIdentifiableDemographics.json.patientBiologicalSex, HeightInches = agesex1[match(cohorts$robust, 
@@ -8,7 +9,9 @@ nicole = data.frame(healthCode = cohorts$robust, GINA = GINA.cal(cohorts$robust)
     agesex1$healthCode), ]$NonIdentifiableDemographics.json.patientWeightPounds, CurrentAge = agesex1[match(cohorts$robust, 
     agesex1$healthCode), ]$NonIdentifiableDemographics.json.patientCurrentAge, peakflow = unlist(dai.peakflow[match(cohorts$robust, 
     names(dai.peakflow))]))
+    
 table(is.na(nicole$peakflow))
+
 # # load('from_marcus_091316/robust_users_data.Rdata') pfs_gina <-
 # robust_users_daily_summary; rm(robust_users_daily_summary) pfs_gina <- pfs_gina[,
 # !names(pfs_gina) %in% 'GINA'] colnames(pfs_gina)[2] <- 'GINA'
